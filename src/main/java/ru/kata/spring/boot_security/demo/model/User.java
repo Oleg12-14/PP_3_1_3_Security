@@ -5,9 +5,6 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import javax.persistence.*;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.Pattern;
-import javax.validation.constraints.Size;
 import java.util.Collection;
 import java.util.Objects;
 import java.util.Set;
@@ -24,28 +21,21 @@ public class User implements UserDetails {
 
 
     @Column(name = "name")
-    @Size(min = 2, message = "Имя должно содержать как минимум 2 символа.")
-    @Pattern(regexp = "^[a-zA-Zа-яА-Я]+$", message = "Имя не должно содержать цифры, пробелы, спецсимволы")
     private String name;
 
     @Column(name = "surname")
-    @Size(min = 2, message = "Фамилия должна содержать как минимум 2 символа.")
-    @Pattern(regexp = "^[a-zA-Zа-яА-Я]+$", message = "Фамилия не должна содержать цифры, пробелы, спецсимволы")
     private String surname;
 
     @Column(name = "department")
     private String department;
 
     @Column(name = "salaary")
-    @Min(value = 0, message = "Зарплата не должна быть меньше 0.")
     private int salary;
 
     @Column(name = "username", unique = true)
-    @Size(min = 2, message = "Не меньше 5 знаков")
-    @Pattern(regexp = "^[a-zA-Zа-яА-Я]+$", message = "Логин не должен содержать цифры, пробелы, спецсимволы")
     private String username;
 
-    @Size(min = 2, message = "Не меньше 5 знаков")
+
     private String password;
     @ManyToMany
     @JoinTable(name = "users_roles",
